@@ -4,7 +4,10 @@ This is the reference document used in the "Introduction to Ruby on Rails" Hacke
 Made by Herbert Ilhan Tanujaya, for NUS Hackers.
 
 ## Preparation
-- Linux/Mac. Windows is not recommended. Please consult a helper if you are using Windows.
+- Linux/Mac. Windows is not recommended. Please consult a helper if you are using Windows. Some options:
+  - Install Linux systems on virtual machines such as VirtualBox (https://itsfoss.com/install-linux-in-virtualbox/)
+  - Dual boot Ubuntu along with Windows (https://hackernoon.com/installing-ubuntu-18-04-along-with-windows-10-dual-boot-installation-for-deep-learning-f4cd91b58557)
+  - Install Windows Subsystem for Linux (https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 - RVM: https://rvm.io/
   - `gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB`
   - `\curl -sSL https://get.rvm.io | bash -s stable --rails`
@@ -38,6 +41,46 @@ The controller and the view acts upon a model. One model can have many
 controller actions / views.
 
 ### Using Reddit as a Sample
+In Reddit, we can create posts and view posts. This `post` by itself is a model.
+
+![List posts](list_posts.png)
+
+We note that we can view posts. Hence, "view" is a controller action associated
+with the `post` model. This picture above is a screenshot of the corresponding
+"view" controller.
+
+![Show post](show_post.png)
+
+We can also show single posts. Hence, "show" is also a controller action
+associated with the `post` model. This picture above is a screenshot of the
+corresponding "show" controller.
+
+![New post](new_post.png)
+
+Of course, we can also create posts. Hence, "create" is a controller action
+associated with the `post` model. The screenshot above is the form that we
+fill in to create posts. However, the form itself is _not_ associated with the
+"create" action -- in this view, we are not creating anything yet! We are only
+filling in the form to create the post.
+
+Hence, in fact there are 2 separate controller actions here: the first one is
+to show the form that we can fill in to create a post; and the second one is
+the action that actually creates the post (after we click the submit button).
+We can name the first one, the one that only shows the form, to be the "new"
+action. This "new" action has a view associated with it. Meanwhile, the action
+that actually creates the post shall be named as the "create" action. Do note
+that there is no view associated with the "create" action: once we create the
+post, we get redirected to the "view posts" view directly.
+
+We can also name other actions associated with posts: edit, delete, upvote,
+downvote, and so on. We can also observe other models, such as comments,
+subreddits, and so on. These other models also have their own controllers and
+views.
+
+## Architecture
+Roughly, the architecture of a generic Rails application is like this:
+
+![Rails architecture](mvc.png)
 
 ## Creating a Book Shop App
 ```
@@ -57,7 +100,7 @@ storage  test  tmp  vendor  yarn.lock
 ```
 $ rails server
 => Booting Puma
-=> Rails 6.0.0 application starting in development 
+=> Rails 6.0.0 application starting in development
 => Run `rails server --help` for more startup options
 Puma starting in single mode...
 * Version 3.12.1 (ruby 2.6.3-p62), codename: Llamas in Pajamas
@@ -76,7 +119,7 @@ Open `localhost:3000` in your browser. You should see "Yay! You're on Rails!"
 - For now, let us assume everyone can create, update, and delete books as well.
 - Everyone can "purchase" a book, reducing its count by 1. You cannot purchase
   if the book count is zero.
-![Book model picture](book_model.png)
+![Book model diagram](book_model.png)
 
 ## Creating our Model
 ```
