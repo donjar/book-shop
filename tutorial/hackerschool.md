@@ -560,10 +560,10 @@ end
 Rails.application.routes.draw do
   get('books/new', to: 'books#new')
   post('books', to: 'books#create')
-  get('books/:id/edit', to: 'books#edit', as: 'book')
-  put('books/:id', to: 'books#update', as: 'book')
+  get('books/:id/edit', to: 'books#edit', as: 'book_edit')
+  patch('books/:id', to: 'books#update')
   get('books', to: 'books#list')
-  get('books/:id', to: 'books#show')
+  get('books/:id', to: 'books#show', as: 'book')
 end
 ```
 
@@ -574,6 +574,7 @@ end
 def destroy
   id = params[:id]
   Book.find_by(id: id).destroy()
+  redirect_to(books_path)
 end
 ```
 
@@ -582,12 +583,20 @@ end
 Rails.application.routes.draw do
   get('books/new', to: 'books#new')
   post('books', to: 'books#create')
-  delete('books/:id', to: 'books#destroy')
-  get('books/:id/edit', to: 'books#edit')
-  put('books/:id', to: 'books#update')
+  get('books/:id/edit', to: 'books#edit', as: 'book_edit')
+  patch('books/:id', to: 'books#update')
   get('books', to: 'books#list')
-  get('books/:id', to: 'books#show')
+  get('books/:id', to: 'books#show', as: 'book')
+  delete('books/:id', to: 'books#destroy', as: 'book_destroy')
 end
+```
+
+#### `app/views/books/show.html.erb`
+```erb
+<p>Title: <%= @book.title %><p>
+<p>Author: <%= @book.author %><p>
+<p>Count: <%= @book.count %><p>
+<p><%= link_to('Delete book', book_destroy_path(@book), method: :delete) %></p>
 ```
 
 ## More!

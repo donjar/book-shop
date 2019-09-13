@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   patch('books/:id', to: 'books#update')
   get('books', to: 'books#list')
   get('books/:id', to: 'books#show', as: 'book')
-  delete('books/:id', to: 'books#delete', as: 'book_delete')
+  delete('books/:id', to: 'books#destroy', as: 'book_destroy')
 end
