@@ -1,0 +1,5 @@
+<% @books.each do |book| %>
+  <p>ID: <%= book.id %>, title: <%= book.title %>, author: <%= book.author %>, count: <%= book.count %></p>
+<% end %>
+
+<%= link_to('New book', books_new_path) %>
