@@ -386,9 +386,9 @@ end
 
 In `app/views/books/show.html.erb`:
 ```erb
-<p>Title: <%= @book.title %><p>
-<p>Author: <%= @book.author %><p>
-<p>Count: <%= @book.count %><p>
+<p>Title: <%= @book.title %></p>
+<p>Author: <%= @book.author %></p>
+<p>Count: <%= @book.count %></p>
 ```
 
 In `config/routes.rb`:
