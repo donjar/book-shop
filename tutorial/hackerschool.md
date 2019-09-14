@@ -698,6 +698,9 @@ and that it returns `false` instead of `true`.
 "Not everyone is a special snowflake." Rails prefers doing things
 implicitly/magically over explicitness.
 
+## Appendix: Deploying your application
+Refer to https://devcenter.heroku.com/articles/getting-started-with-rails5.
+
 ## Appendix: Idiomatic Ruby
 - In general, parantheses on function calls can be omitted
 - The last value of a function in Ruby serves as a return value
