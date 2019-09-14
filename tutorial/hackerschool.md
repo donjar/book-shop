@@ -486,7 +486,6 @@ Rails's error pages also show this helpful table. Try e.g. `localhost:3000/asdf`
 In the controller:
 ```ruby
 def create
-  book_params = params[:book]
   book = Book.new(book_params())
 
   if book.save()
